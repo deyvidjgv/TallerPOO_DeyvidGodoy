@@ -17,7 +17,20 @@ public class Personaje {
     private int pocionesGrandes;
     private boolean ultimoGolpeCritico;
 
-    private static final int EXPERIENCIA_PARA_SUBIR = 100;
+    // public para que Main pueda mostrar el umbral sin repetir el numero
+    public static final int EXPERIENCIA_PARA_SUBIR = 100;
+
+    // valores por defecto cuando el constructor recibe datos invalidos
+    private static final String NOMBRE_POR_DEFECTO = "Heroe";
+    private static final int VIDA_MAXIMA_POR_DEFECTO = 100;
+    private static final int ATAQUE_POR_DEFECTO = 10;
+    private static final int NIVEL_INICIAL = 1;
+    private static final int POCIONES_INICIALES = 1;
+    private static final double SIN_ORO = 0.0;
+
+    // golpe critico: 15% de probabilidad y el dano se duplica
+    private static final double PROBABILIDAD_CRITICO = 0.15;
+    private static final int MULTIPLICADOR_CRITICO = 2;
 
     public Personaje(String nombre, int vidaMaxima, int puntosAtaque, double oro) {
         this.nombre = nombre;
@@ -25,25 +38,25 @@ public class Personaje {
         if (vidaMaxima > 0) {
             this.vidaMaxima = vidaMaxima;
         } else {
-            this.vidaMaxima = 100;
+            this.vidaMaxima = VIDA_MAXIMA_POR_DEFECTO;
         }
 
         if (puntosAtaque > 0) {
             this.puntosAtaque = puntosAtaque;
         } else {
-            this.puntosAtaque = 10;
+            this.puntosAtaque = ATAQUE_POR_DEFECTO;
         }
 
         // el oro no puede empezar negativo
-        if (oro >= 0.0) {
+        if (oro >= SIN_ORO) {
             this.oro = oro;
         } else {
-            this.oro = 0.0;
+            this.oro = SIN_ORO;
         }
 
-        this.nivel = 1;
+        this.nivel = NIVEL_INICIAL;
         this.experiencia = 0;
-        this.pocionesGrandes = 1;
+        this.pocionesGrandes = POCIONES_INICIALES;
         this.ultimoGolpeCritico = false;
 
         // empieza con la vida llena, se manda por el setter para que estaVivo quede en true
@@ -57,13 +70,13 @@ public class Personaje {
     // }
     // corregido: la vida que llega pasa por setPuntosVida y estaVivo queda acorde a esa vida
     public Personaje(int puntosVida) {
-        this.nombre = "Heroe";
-        this.vidaMaxima = 100;
-        this.puntosAtaque = 10;
-        this.nivel = 1;
-        this.oro = 0.0;
+        this.nombre = NOMBRE_POR_DEFECTO;
+        this.vidaMaxima = VIDA_MAXIMA_POR_DEFECTO;
+        this.puntosAtaque = ATAQUE_POR_DEFECTO;
+        this.nivel = NIVEL_INICIAL;
+        this.oro = SIN_ORO;
         this.experiencia = 0;
-        this.pocionesGrandes = 1;
+        this.pocionesGrandes = POCIONES_INICIALES;
         this.ultimoGolpeCritico = false;
         this.setPuntosVida(puntosVida);
     }
@@ -82,8 +95,8 @@ public class Personaje {
         ultimoGolpeCritico = false;
 
         // golpe critico: Math.random() da un numero entre 0 y 1, si sale menor a 0.15 es el 15%
-        if (Math.random() < 0.15) {
-            dano = dano * 2;
+        if (Math.random() < PROBABILIDAD_CRITICO) {
+            dano = dano * MULTIPLICADOR_CRITICO;
             ultimoGolpeCritico = true;
             System.out.println("GOLPE CRITICO!! el dano se duplica");
         }
@@ -200,7 +213,7 @@ public class Personaje {
 
     // si el oro queda negativo se rechaza y el atributo no cambia
     public void setOro(double oro) {
-        if (oro < 0.0) {
+        if (oro < SIN_ORO) {
             System.out.println("saldo insuficiente, la operacion fue rechazada");
         } else {
             this.oro = oro;
@@ -209,7 +222,7 @@ public class Personaje {
 
     // protected: desde Main (otro paquete) no se puede llamar
     protected void setNivel(int nivel) {
-        if (nivel < 1) {
+        if (nivel < NIVEL_INICIAL) {
             System.out.println("nivel no valido, se queda en " + this.nivel);
         } else {
             this.nivel = nivel;

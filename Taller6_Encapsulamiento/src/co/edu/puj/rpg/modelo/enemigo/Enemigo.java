@@ -11,37 +11,44 @@ public class Enemigo {
     private boolean estaVivo;
     private int experiencia; // la experiencia que gana el heroe al derrotarlo
 
+    // valores por defecto cuando el constructor recibe datos invalidos
+    private static final int VIDA_MAXIMA_POR_DEFECTO = 50;
+    private static final int ATAQUE_POR_DEFECTO = 5;
+    private static final int NIVEL_MINIMO = 1;
+    private static final double SIN_ORO = 0.0;
+    private static final int SIN_EXPERIENCIA = 0;
+
     public Enemigo(String nombre, int vidaMaxima, int puntosAtaque, int nivel, double oro, int experiencia) {
         this.nombre = nombre;
 
         if (vidaMaxima > 0) {
             this.vidaMaxima = vidaMaxima;
         } else {
-            this.vidaMaxima = 50;
+            this.vidaMaxima = VIDA_MAXIMA_POR_DEFECTO;
         }
 
         if (puntosAtaque > 0) {
             this.puntosAtaque = puntosAtaque;
         } else {
-            this.puntosAtaque = 5;
+            this.puntosAtaque = ATAQUE_POR_DEFECTO;
         }
 
-        if (nivel >= 1) {
+        if (nivel >= NIVEL_MINIMO) {
             this.nivel = nivel;
         } else {
-            this.nivel = 1;
+            this.nivel = NIVEL_MINIMO;
         }
 
-        if (oro >= 0) {
+        if (oro >= SIN_ORO) {
             this.oro = oro;
         } else {
-            this.oro = 0.0;
+            this.oro = SIN_ORO;
         }
 
-        if (experiencia >= 0) {
+        if (experiencia >= SIN_EXPERIENCIA) {
             this.experiencia = experiencia;
         } else {
-            this.experiencia = 0;
+            this.experiencia = SIN_EXPERIENCIA;
         }
 
         this.setPuntosVida(this.vidaMaxima);
