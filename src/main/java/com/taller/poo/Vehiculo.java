@@ -24,11 +24,17 @@ public class Vehiculo {
     // y el valor por defecto false (apagado) tiene sentido
     private boolean encendido;
 
+    // valores por defecto que pide la guia para el constructor sin parametros
+    private static final String MARCA_POR_DEFECTO = "Genérico";
+    private static final String MODELO_POR_DEFECTO = "Sin Modelo";
+    private static final double KILOMETRAJE_INICIAL = 0.0;
+    private static final int VELOCIDAD_MAX_POR_DEFECTO = 120;
+
     public Vehiculo() {
-        this.marcaVehiculo = "Genérico";
-        this.modeloVehiculo = "Sin Modelo";
-        this.kilometrajeActual = 0.0;
-        this.velocidadMax = 120;
+        this.marcaVehiculo = MARCA_POR_DEFECTO;
+        this.modeloVehiculo = MODELO_POR_DEFECTO;
+        this.kilometrajeActual = KILOMETRAJE_INICIAL;
+        this.velocidadMax = VELOCIDAD_MAX_POR_DEFECTO;
         this.encendido = false;
     }
 

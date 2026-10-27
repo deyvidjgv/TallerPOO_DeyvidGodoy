@@ -23,18 +23,25 @@ public class CuentaBancaria {
      * 0.0 por defecto y la operacion se hace normal.
      */
 
+    // valores por defecto que pide la guia para los constructores
+    private static final String NUMERO_CUENTA_POR_DEFECTO = "000000";
+    private static final String TITULAR_POR_DEFECTO = "Sin Nombre";
+    private static final double SALDO_INICIAL = 0.0;
+    private static final double SIN_CREDITO = 0.0;
+    private static final double LIMITE_CREDITO_BASICO = 100.0;
+
     public CuentaBancaria() {
-        this.numeroCuenta = "000000";
-        this.titular = "Sin Nombre";
-        this.saldo = 0.0;
-        this.limiteCredito = 0.0;
+        this.numeroCuenta = NUMERO_CUENTA_POR_DEFECTO;
+        this.titular = TITULAR_POR_DEFECTO;
+        this.saldo = SALDO_INICIAL;
+        this.limiteCredito = SIN_CREDITO;
     }
 
     public CuentaBancaria(String numeroCuenta, String titular) {
         this.numeroCuenta = numeroCuenta;
         this.titular = titular;
-        this.saldo = 0.0;
-        this.limiteCredito = 100.0;
+        this.saldo = SALDO_INICIAL;
+        this.limiteCredito = LIMITE_CREDITO_BASICO;
     }
 
     public CuentaBancaria(String numeroCuenta, String titular, double saldo, Double limiteCredito) {
