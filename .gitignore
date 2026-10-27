@@ -5,13 +5,17 @@ target/
 .kotlin
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+# toda la carpeta .idea es configuracion local del IDE, no va al repositorio
+.idea/
 *.iws
 *.iml
 *.ipr
+# carpeta de compilacion de IntelliJ cuando se corre sin Maven
+out/
+
+### Java ###
+*.class
+*.log
 
 ### Eclipse ###
 .apt_generated
